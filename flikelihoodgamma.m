@@ -1,4 +1,4 @@
-function fval = flikelihood(params)
+function fval = flikelihoodgamma(params)
 global x;
 global y;
 
@@ -9,7 +9,7 @@ k = params(4);
 theta = params(5);
 
 eta = y - (a.*x+log(a)*x.^2+b*exp(c.*x));
-fval = -((k-1)*sum(log(eta)) - sum(eta)/theta - 10000*k*log(theta) - 10000*log(gamma(k)));
+fval = -((k-1)*sum(log(eta)) - sum(eta)/theta - size(eta,2)*k*log(theta) - size(eta,2)*log(gamma(k)));
 
 % for i = 1:1000
 %     term1(i) = log(y(i));
