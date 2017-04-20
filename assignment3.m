@@ -28,7 +28,7 @@ hold on
 y_ad_gamma = fmodel(b);
 plot(X,y_ad_gamma);
 hold off
-%%
+%% Normal
 
 clc
 
@@ -43,8 +43,10 @@ y = Y;
 % Now I need the log-liklihood function to maximize
 
 b0 = [3 2 2 4 4];
-options = optimset('LargeScale', 'off', 'HessUpdate', 'bfgs');
-[b, fval, flag, output] = fminunc(@flikelihoodnormal, b0, options);
+options = optimset('LargeScale', 'off', 'HessUpdate', 'dfp');
+%[b, fval, flag, output] = fminunc(@flikelihoodnormal, b0, options);
+[b, fval, flag, output] = fminsearch(@flikelihoodnormal, b0, options);
+%phat = mle(Y,'nloglf',@flikelihoodnormal,'start',b0);
 
 a_normal = b(1);
 b_normal = b(2);
