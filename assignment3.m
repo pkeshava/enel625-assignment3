@@ -68,12 +68,18 @@ b_normal = b(2);
 c_normal = b(3);
 mu_normal = b(4);
 var_normal = b(5);
+a_n_curve = 4.494e-9;
+b_n_curve = 11.69;
+c_n_curve = 2.441;
+b_curve = [a_n_curve b_n_curve c_n_curve];
 
 figure;
 plot(X,Y);
 hold on 
 y_ad_normal = fmodel(b);
+y_ad_norm_curve = fmodel(b_curve);
 plot(X,y_ad_normal);
+plot(X,y_ad_norm_curve);
 hold off
 figure;
 xn = -50:0.5:50;
@@ -93,10 +99,6 @@ global x;
 global y;
 x = X;
 y = Y;
-
-% Okay first I need to write a function that will model the output based on
-% the estimated PDF parameters
-% Now I need the log-liklihood function to maximize
 
 b0 = [3 2 2 4 4];
 options = optimset('LargeScale', 'off', 'HessUpdate', 'bfgs');
